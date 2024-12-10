@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from decouple import config
+
 SECRET_KEY = config('SECRET_KEY', default='your-secret-key')
 DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
@@ -8,13 +9,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 # Base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-replace-this-with-a-real-secret-key'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Set to False in production
-
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Add your domain or server IP for production
 
 # Application definition
 INSTALLED_APPS = [
@@ -62,6 +57,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'PersonalAutomator.wsgi.application'  # Replace 'YourProjectName' with your project folder name
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Use database for sessions
+
+SESSION_FILE_PATH = "/tmp/django_sessions"  # Example path
 
 # Database
 DATABASES = {
